@@ -1,0 +1,46 @@
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    color: #FF0050; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    color: #000000; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slogan {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: -3px;
+    text-transform: capitalize;
+    background: red; 
+    background-clip: inherit;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+.dynamic-box {
+    display: inline-block;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.06); /* Soft elevated effect */
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.dynamic-box:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
+                0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}

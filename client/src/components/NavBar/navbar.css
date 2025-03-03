@@ -1,0 +1,58 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: #FF0050; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: #000000; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FF0050; 
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff75a0; 
+}
