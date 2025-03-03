@@ -5,6 +5,12 @@
     color: #FF0050; 
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
+  overflow: visible;
+  text-overflow: ellipsis;
+  letter-spacing: 1px;
+  line-height: 1.2;
+
 }
 
 .logo2 {
@@ -14,8 +20,13 @@
     color: #000000; 
     text-transform: uppercase;
     letter-spacing: 1px;
-}
+    white-space: nowrap;
+  overflow: visible;
+  text-overflow: ellipsis;
+  letter-spacing: 1px;
+  line-height: 1.2;
 
+}
 .slogan {
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
