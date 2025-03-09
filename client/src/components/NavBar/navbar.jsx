@@ -1,25 +1,23 @@
-import './navbar.css'
+import './navbar.css';
 
+function Navbar() {
+  return (
+    <nav className="navbar">
+  <div className="scryix-logo">
+    <h1 className='gradient-text' style={{fontSize:60}}>
+      SRYIX
+    </h1>
+  </div>
 
-function Navbar(){
-    return (
-        <nav className="navbar">
-    
-          <div>
-            <span className="logo">BET</span>
-            <span className="logo2">WELT</span>
-          </div>
-    
-        
-          <ul className="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-      );
-    };
+  <ul className="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
+  );
+}
 
-export default Navbar
+export default Navbar;

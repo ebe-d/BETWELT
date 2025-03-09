@@ -1,6 +1,6 @@
 .SignUp-button {
-  background-color: #2d2d2d;
-  color: white;
+  background-color: #00FFFF;
+  color: rgb(0, 0, 0);
   padding: 10px 24px;
   border-radius: 6px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
@@ -17,12 +17,12 @@
 }
 
 .SignUp-button:hover {
-  background-color: #3a3a3a;
+  background-color: #257a7a;
   transform: scale(1.05);
 }
 
 .SignUp-button span {
-  color: white;
+  color: rgb(12, 12, 12);
   font-size: 16px;
   align-items: center;
 }

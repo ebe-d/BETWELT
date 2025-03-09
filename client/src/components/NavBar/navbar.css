@@ -1,58 +1,155 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
-
-
+/* Parent navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Logo left, links right */
     align-items: center;
-    padding: 15px 40px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    padding: 20px 60px; /* Increased right/left padding */
+    background-color: #111;
+    border-bottom: 2px solid #00f0ff;
+    height: 140px;
+  }
 
-.logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 100px;
+  
+  /* Logo styling */
+  .logo h1 {
+    color: #00f0ff;
+    font-size: 36px;
     font-weight: bold;
-    color: #FF0050; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.logo2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 100px;
-    font-weight: bold;
-    color: #000000; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-
-.nav-links {
-    list-style: none;
+    text-shadow: 0 0 10px #00f0ff;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* UL links container */
+  .nav-links {
     display: flex;
-    gap: 25px;
+    gap: 50px; /* More space between links */
+    list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links a {
+    margin-right: 40px; /* Pushes links further to the right */
+    font-weight: 100;
+  }
+  
+  /* LI -> A links */
+  .nav-links li a {
+    color: #00f0ff;
     text-decoration: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover effects (color + slight scale) */
+  .nav-links li a:hover {
+    color: #00ff80;
+    text-shadow: 0 0 10px #00ff80, 0 0 20px #00ff80;
+    transform: scale(1.05);
+  }
+  
+  /* Line Animation Effect (Before & After Pseudo Elements) */
+  .nav-links li a::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #00ff80;
+    box-shadow: 0 0 10px #00ff80;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links li a:hover::before {
+    width: 100%;
+  }
+
+  .scryix-logo {
+    color: rgb(0, 240, 255);
+    font-size: 40px;
     font-weight: bold;
-    color: #FF0050; 
-    text-transform: uppercase;
-    transition: color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 0 20px #00f0ff, ;
+    transition:  text-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .scryix-logo span {
+    color: rgb(0, 240, 255);
+  }
+  
+  /* Hover effect */
+  .scryix-logo:hover {
+    transform: scale(1.1);
+    text-shadow:
+      0 0 5px #00f0ff,
+      0 0 10px #00f0ff,
+      0 0 20px #00f0ff,
+      0 0 40px #00f0ff,
+      0 0 60px #00ff80,
+      0 0 80px #00ff80;
+  }
+  
+  /* Optional: Flicker on hover */
+  .scryix-logo:hover {
+    animation: flicker 1s infinite alternate;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+      text-shadow:
+        0 0 5px #00f0ff,
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #00ff80;
+    }
+    50% {
+      opacity: 0.8;
+      text-shadow:
+        0 0 2px #00f0ff,
+        0 0 5px #00f0ff,
+        0 0 10px #00f0ff,
+        0 0 20px #00ff80;
+    }
+    100% {
+      opacity: 1;
+      text-shadow:
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 30px #00f0ff,
+        0 0 50px #00ff80;
+    }
+  }
+  
+  .gradient-text {
+  font-family: 'Montserrat', sans-serif; /* Optional: your font choice */
+  font-size: 48px; /* Adjust as needed */
+  font-weight: bold;
+
+  background: linear-gradient(90deg, #40ffaa, #4079ff, #40ffaa, #4079ff);
+  background-size: 400% 400%;
+  background-clip: 'text';
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Optional: Animation for a moving gradient effect */
+  animation: textGradientMove 8s ease infinite;
 }
 
-.nav-links a:hover {
-    color: #ff75a0; 
+@keyframes textGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
+  

@@ -1,0 +1,15 @@
+.blinking-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #10b981; /* Tailwind Green */
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1s infinite alternate;
+    box-shadow: 0 0 5px #10b981;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.4; }
+  }
+  

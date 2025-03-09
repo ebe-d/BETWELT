@@ -1,57 +1,179 @@
 .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 150px;
-    font-weight: bold;
-    color: #FF0050; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  overflow: visible;
-  text-overflow: ellipsis;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 150px;
+  font-weight: bold;
+  color: #FF0050; 
+  text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 1.2;
+  white-space: nowrap;
+overflow: visible;
+text-overflow: ellipsis;
+letter-spacing: 1px;
+line-height: 1.2;
 
 }
 
 .logo2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 150px;
-    font-weight: bold;
-    color: #000000; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  overflow: visible;
-  text-overflow: ellipsis;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 150px;
+  font-weight: bold;
+  color: #000000; 
+  text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 1.2;
+  white-space: nowrap;
+overflow: visible;
+text-overflow: ellipsis;
+letter-spacing: 1px;
+line-height: 1.2;
 
 }
+
 .slogan {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    font-weight: bold;
-    letter-spacing: -3px;
-    text-transform: capitalize;
-    background: red; 
-    background-clip: inherit;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  text-transform: capitalize;
+  background: red; 
+  background-clip: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
 }
 
 .dynamic-box {
-    display: inline-block;
-    padding: 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
-                0 2px 4px rgba(0, 0, 0, 0.06); /* Soft elevated effect */
-    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  display: inline-block;
+  padding: 16px;
+  border: 1px solid #2c2c2c;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
+              0 2px 4px rgba(0, 0, 0, 0.06); /* Soft elevated effect */
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .dynamic-box:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
-                0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
+              0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.LogoWhole:hover{
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
+  0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+/* 🔹 Center Everything */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🔹 Logo Styling */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo, .logo2 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+/* 🔹 Slogan */
+.slogan-container {
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔹 Static "Your" Text */
+.static-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+
+/* 🔄 Rotating Words */
+.rotating-text {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 120px;
+  min-height: 40px;
+}
+
+/* 🔹 Buttons */
+.dynamic-box {
+  width: 300px;
+  height: 200px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scryix-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 100px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  opacity: 1;
+  transition: transform 0.5s ease;
+}
+
+.scryix-title:hover {
+  transform: scale(1.1);
+  animation: fadeGlow 0.5s forwards;
+}
+
+@keyframes fadeGlow {
+  0% {
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    opacity: 0.9;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+  }
+}
+
+/* Reset default margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
