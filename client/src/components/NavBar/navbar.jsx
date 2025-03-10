@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './navbar.css';
 import { Link, useLocation } from 'react-router-dom';
+
 function Navbar({ imglink }) {
-  // Track the active nav item
-  const location=useLocation();
+  const location = useLocation();
+
+  // Track scroll state
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (link) => {
-    setlocation.pathname(link);
+    // no need for this function unless you're manually setting something
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="predixor-logo">
         <h1 className="gradient-text" style={{ fontSize: 60 }}>
           Predixor
@@ -20,8 +34,8 @@ function Navbar({ imglink }) {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <ul className="nav-links">
           <li>
-            <Link to='/home#dashboard'
-              onClick={() => handleNavClick('dashboard')}
+            <Link
+              to='/home#dashboard'
               className={location.pathname === '/home' ? 'active' : ''}
             >
               Dashboard
@@ -30,7 +44,6 @@ function Navbar({ imglink }) {
           <li>
             <Link
               to="/home/events"
-              onClick={() => handleNavClick('events')}
               className={location.pathname === '/home/events' ? 'active' : ''}
             >
               Events
@@ -39,7 +52,6 @@ function Navbar({ imglink }) {
           <li>
             <Link
               to="/home/myentries"
-              onClick={() => handleNavClick('myentries')}
               className={location.pathname === '/home/myentries' ? 'active' : ''}
             >
               My Entries
@@ -48,7 +60,6 @@ function Navbar({ imglink }) {
           <li>
             <Link
               to="/home/wallet"
-              onClick={() => handleNavClick('wallet')}
               className={location.pathname === '/home/wallet' ? 'active' : ''}
             >
               Wallet
@@ -56,8 +67,7 @@ function Navbar({ imglink }) {
           </li>
           <li>
             <Link
-              href="/home/help"
-              onClick={() => handleNavClick('help')}
+              to="/home/help"
               className={location.pathname === '/home/help' ? 'active' : ''}
             >
               Help
@@ -66,7 +76,6 @@ function Navbar({ imglink }) {
         </ul>
       </div>
 
-      {/* Avatar Section */}
       <div className="avatar-container">
         <img
           src={imglink || "https://i.pravatar.cc/40"}

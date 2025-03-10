@@ -5,7 +5,7 @@ function EventPage(){
     return (
         <>
         <Navbar imglink={''} />
-        <div style={{ position: 'relative', height: '100vh', overflow: 'hidden',backgroundColor:'black' }}>
+        <div style={{ position: 'relative', minHeight: '110vh', overflow: 'hidden', backgroundColor: 'black',margin:0,paddingTop:120 }}>
           {/* Aurora in the background */}
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
             <Aurora
