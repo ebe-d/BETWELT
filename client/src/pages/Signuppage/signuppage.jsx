@@ -41,14 +41,14 @@ function SignInPage() {
             width: '100%',
           }}
         >
-          {/* Scryix Title */}
+          {/* predixor Title */}
           <GradientText
             colors={["#00f0ff", "#40ffaa", "#4079ff", "#ff40ff"]} // Neon/Futuristic vibe
             animationSpeed={6}
             showBorder={false}
-            className="scryix-title"
+            className="predixor-title"
           >
-            Scryix
+            Predixor
           </GradientText>
 
           {/* Auth Component */}

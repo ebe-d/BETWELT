@@ -5,7 +5,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(13, 13, 13, 0.95); /* Almost opaque dark background */
+    background-color: rgba(0, 0, 0, 0.95); /* Almost opaque dark background */
     display: flex;
     flex-direction: column;
     justify-content: center;

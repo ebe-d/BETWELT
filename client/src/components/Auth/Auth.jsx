@@ -146,7 +146,7 @@ function AuthComponent({ isSignUp }) {
         style={{
          }}
       >
-         {isSignUp?<SignUp afterSignUpUrl='/Home' appearance={customAppearance}  />:<SignIn afterSignInUrl={isSignedIn?'/Home':'/Signup'} appearance={customAppearance}  />}
+         {isSignUp?<SignUp afterSignUpUrl='/home#dashboard' appearance={customAppearance}  />:<SignIn afterSignInUrl={isSignedIn?'/home#dashboard':'/Signup'} appearance={customAppearance}  />}
       </div>
     </div>
   );

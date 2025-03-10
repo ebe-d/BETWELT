@@ -55,19 +55,19 @@ function Main() {
             width: '100%'
           }}
         >
-          {/* Scryix Title */}
+          {/* predixor Title */}
           <GradientText
             colors={["#00f0ff", "#40ffaa", "#4079ff"]}
             animationSpeed={3}
             showBorder={false}
-            className="scryix-title"
+            className="predixor-title"
             style={{
                 fontFamily: 'Montserrat, sans-serif', // ✅ Applied Montserrat
                 fontSize: '5rem',                      // ✅ You can adjust this
                 fontWeight: '700',                     // ✅ Make it bold for more impact
               }}
           >
-            Scryix
+            Predixor
           </GradientText>
 
           {/* Rotating Slogan Text */}

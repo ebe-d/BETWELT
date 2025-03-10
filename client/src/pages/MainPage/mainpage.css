@@ -135,7 +135,7 @@
     justify-content: center;
 }
 
-.scryix-title {
+.predixor-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 100px;
     font-weight: 700;
@@ -145,7 +145,7 @@
     transition: transform 0.5s ease;
   }
   
-  .scryix-title:hover {
+  .predixor-title:hover {
     transform: scale(1.1);
     animation: fadeGlow 0.5s forwards;
   }

@@ -7,10 +7,9 @@ import SignUpPage from './pages/Signuppage/signuppage';
 import SignInPage from './pages/SigninPage/signinpage';
 import Homepage from './pages/HomePage/homepage';
 import AdminPage from './pages/AdminPages/admindashboard';
-import Events from './pages/EventPages/eventpages';
 import PrivateRoute from './components/PrivateRoute/privateroute';
 import Demo from './pages/Demo/demo';
-
+import EventPage from './pages/EventPages/eventpages';
 
 function App() {
 
@@ -22,9 +21,9 @@ function App() {
        <Route path='/' element={<Main/>}></Route>
        <Route path='/SignUp' element={<SignUpPage/>}></Route>
        <Route path='/SignIn' element={<SignInPage/>}></Route>
-       <Route path='/Home' element={<PrivateRoute/>}>
+       <Route path='/home' element={<PrivateRoute/>}>
           <Route index element={<Homepage/>}/>
-          <Route path='Events' element={<Events/>} />
+          <Route path='events' element={<EventPage/>} />
        </Route>
        <Route path='/admin' element={<AdminPage></AdminPage>}/>
        <Route path='/demo' element={<Demo/>}/>

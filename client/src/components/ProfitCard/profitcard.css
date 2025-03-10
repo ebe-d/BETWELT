@@ -1,0 +1,48 @@
+.revenue-card {
+    background: linear-gradient(180deg, #234752, #000000); /* dark bluish gradient */
+    backdrop-filter: blur(12px);
+    color: #e5e7eb; /* light gray text */
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 255, 224, 0.1);
+    width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .revenue-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 255, 224, 0.3);
+  }
+  
+  .revenue-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .revenue-title {
+    font-size: 20px;
+    color: #cbd5e1; /* muted light gray */
+    letter-spacing: 1px;
+  }
+  
+  .revenue-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #00ffe0; /* neon teal */
+    text-shadow: 0 0 8px rgba(0, 255, 224, 0.5);
+  }
+  
+  .revenue-change {
+    font-size: 14px;
+    color: #6ee7b7; /* mint green */
+    margin-top: 4px;
+  }
+  
+  .revenue-card-content {
+    height: 130px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+  }
+  
