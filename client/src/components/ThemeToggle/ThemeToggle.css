@@ -1,0 +1,45 @@
+/* Theme toggle button styling */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--background-secondary, #1a1a1a);
+    border: 2px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    color: var(--text-primary, #ffffff);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme="light"] .theme-toggle {
+    background: var(--background-secondary, #ffffff);
+    border: 2px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    color: var(--text-primary, #111111);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle svg {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+} 

@@ -5,59 +5,156 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.95); /* Almost opaque dark background */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999; /* Stays on top of everything */
-  }
-  
-  /* Spinner styles */
-  .spinner {
-    width: 100px;
-    height: 100px;
-    border: 10px solid #00f0ff; /* Neon cyan outer */
-    border-top: 10px solid #40ffaa; /* Neon green top (creates spin illusion) */
+    transition: background-color 0.5s ease;
+}
+
+/* Theme Support */
+.loading-overlay.dark {
+    background-color: #0D0D0D;
+    color: #ffffff;
+}
+
+.loading-overlay.light {
+    background-color: #f9f9f9;
+    color: #111111;
+}
+
+/* Main loader container */
+.predixor-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo Animation */
+.logo-animation {
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Logo text styling */
+.logo-text-loader {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    position: relative;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.dark .logo-text-loader {
+    color: #ffffff;
+}
+
+.light .logo-text-loader {
+    color: #111111;
+}
+
+/* Logo accent (xor part) styling */
+.logo-accent-loader {
+    font-weight: 800;
+    background: linear-gradient(90deg, #7474bf, #9974bf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.light .logo-accent-loader {
+    background: linear-gradient(90deg, #6363ae, #7474bf);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Pulse animation container */
+.pulse-container {
+    position: relative;
+    width: 200px;
+    height: 20px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pulsing rings */
+.pulse-ring {
+    position: absolute;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    box-shadow: 0 0 20px #00f0ff, 0 0 40px #40ffaa;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Loading text */
-  .loading-text {
-    margin-top: 20px;
-    color: #00f0ff;
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px #00f0ff, 0 0 20px #40ffaa;
-    animation: fadeIn 1s ease-in-out infinite alternate;
-  }
-  
-  /* Spinner animation */
-  @keyframes spin {
+    opacity: 0;
+    transform: scale(0);
+    border: 2px solid;
+}
+
+.dark .pulse-ring {
+    border-color: #9974bf;
+    box-shadow: 0 0 20px rgba(153, 116, 191, 0.5);
+}
+
+.light .pulse-ring {
+    border-color: #6363ae;
+    box-shadow: 0 0 20px rgba(99, 99, 174, 0.3);
+}
+
+/* Animation timing for each ring */
+.pulse-ring {
+    animation: pulse 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pulse-ring.delay1 {
+    animation-delay: 0.5s;
+}
+
+.pulse-ring.delay2 {
+    animation-delay: 1s;
+}
+
+/* Float animation for logo */
+@keyframes float {
     0% {
-      transform: rotate(0deg);
-      box-shadow: 0 0 20px #00f0ff, 0 0 40px #40ffaa;
+        transform: translateY(0);
     }
     50% {
-      box-shadow: 0 0 30px #40ffaa, 0 0 60px #00f0ff;
+        transform: translateY(-10px);
     }
     100% {
-      transform: rotate(360deg);
-      box-shadow: 0 0 20px #00f0ff, 0 0 40px #40ffaa;
+        transform: translateY(0);
     }
-  }
-  
-  /* Fade animation for text */
-  @keyframes fadeIn {
-    from {
-      opacity: 0.6;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(0);
     }
-    to {
-      opacity: 1;
+    100% {
+        opacity: 0;
+        transform: scale(2);
     }
-  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-text-loader {
+        font-size: 40px;
+    }
+    
+    .pulse-container {
+        width: 150px;
+    }
+    
+    .pulse-ring {
+        width: 60px;
+        height: 60px;
+    }
+}
   

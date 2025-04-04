@@ -1,0 +1,997 @@
+/* User Profile Styles */
+:root {
+  --profile-primary: #3498db;
+  --profile-primary-dark: #2980b9;
+  --profile-primary-light: #ebf5fb;
+  --profile-success: #2ecc71;
+  --profile-danger: #e74c3c;
+  --profile-warning: #f39c12;
+  --profile-text-primary: #2c3e50;
+  --profile-text-secondary: #7f8c8d;
+  --profile-border: #ecf0f1;
+  --profile-card-bg: #ffffff;
+  --profile-bg: #f5f7fa;
+  --profile-sidebar-width: 280px;
+}
+
+[data-theme="dark"] {
+  --profile-primary: #3498db;
+  --profile-primary-dark: #2980b9;
+  --profile-primary-light: #1e3a5f;
+  --profile-success: #2ecc71;
+  --profile-danger: #e74c3c;
+  --profile-warning: #f39c12;
+  --profile-text-primary: #ecf0f1;
+  --profile-text-secondary: #bdc3c7;
+  --profile-border: #34495e;
+  --profile-card-bg: #2c3e50;
+  --profile-bg: #1a2530;
+}
+
+.user-profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  gap: 20px;
+}
+
+.user-profile-loading .spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--profile-border);
+  border-radius: 50%;
+  border-top-color: var(--profile-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.user-profile-container {
+  display: flex;
+  background-color: var(--profile-bg);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Sidebar Styles */
+.profile-sidebar {
+  width: var(--profile-sidebar-width);
+  background-color: var(--profile-card-bg);
+  border-right: 1px solid var(--profile-border);
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--profile-border);
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid var(--profile-primary);
+}
+
+.profile-avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--profile-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.profile-user-info h2 {
+  margin: 0 0 5px;
+  font-size: 1.5rem;
+  color: var(--profile-text-primary);
+  text-align: center;
+}
+
+.profile-user-info .username {
+  color: var(--profile-text-secondary);
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+
+.profile-user-info .join-date {
+  color: var(--profile-text-secondary);
+  margin: 0 0 15px;
+  font-size: 0.85rem;
+}
+
+.account-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--profile-primary-light);
+  padding: 12px 20px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.balance-label {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+  margin-bottom: 5px;
+}
+
+.balance-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--profile-primary);
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.profile-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  color: var(--profile-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  text-align: left;
+}
+
+.profile-nav-item:hover {
+  background-color: var(--profile-primary-light);
+}
+
+.profile-nav-item.active {
+  background-color: var(--profile-primary);
+  color: white;
+}
+
+.profile-nav-item .nav-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+/* Content Styles */
+.profile-content {
+  flex: 1;
+  padding: 30px;
+  margin-left: var(--profile-sidebar-width);
+}
+
+.profile-section,
+.bets-section,
+.transactions-section,
+.settings-section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.profile-section h1,
+.bets-section h1,
+.transactions-section h1,
+.settings-section h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: var(--profile-text-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--profile-primary);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  background-color: var(--profile-primary-light);
+  color: var(--profile-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--profile-text-primary);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--profile-text-secondary);
+}
+
+.profile-details-section {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.profile-details-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--profile-text-primary);
+  font-size: 1.4rem;
+}
+
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.profile-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+  margin-bottom: 5px;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--profile-text-primary);
+}
+
+.verification-status .verified {
+  color: var(--profile-success);
+}
+
+.verification-status .unverified {
+  color: var(--profile-text-secondary);
+}
+
+.profile-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--profile-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.action-button svg {
+  margin-right: 8px;
+}
+
+.action-button:hover {
+  background-color: var(--profile-primary-dark);
+  transform: translateY(-2px);
+}
+
+.recent-activity-section {
+  margin-top: 30px;
+}
+
+.recent-activity-section h2 {
+  margin-bottom: 20px;
+  color: var(--profile-text-primary);
+  font-size: 1.4rem;
+}
+
+.recent-bets,
+.recent-transactions {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.recent-bets h3,
+.recent-transactions h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--profile-text-primary);
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--profile-border);
+  padding-bottom: 10px;
+}
+
+.recent-bet-item,
+.recent-transaction-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--profile-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-bet-item:last-child,
+.recent-transaction-item:last-child {
+  border-bottom: none;
+}
+
+.bet-event {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--profile-text-primary);
+}
+
+.bet-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bet-selection {
+  color: var(--profile-text-secondary);
+  font-size: 0.9rem;
+}
+
+.bet-amount {
+  font-weight: 600;
+  color: var(--profile-text-primary);
+}
+
+.bet-date {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+}
+
+.bet-result {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.bet-result.win {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: var(--profile-success);
+}
+
+.bet-result.loss {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: var(--profile-danger);
+}
+
+.bet-result.pending {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: var(--profile-warning);
+}
+
+.transaction-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.transaction-method {
+  font-size: 0.9rem;
+  color: var(--profile-text-secondary);
+}
+
+.transaction-type {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.transaction-type.deposit {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: var(--profile-success);
+}
+
+.transaction-type.withdrawal {
+  background-color: rgba(52, 152, 219, 0.2);
+  color: var(--profile-primary);
+}
+
+.transaction-amount {
+  font-weight: 600;
+}
+
+.transaction-amount.deposit {
+  color: var(--profile-success);
+}
+
+.transaction-amount.withdrawal {
+  color: var(--profile-danger);
+}
+
+.transaction-date {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+}
+
+.transaction-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.transaction-status.completed {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: var(--profile-success);
+}
+
+.transaction-status.pending {
+  background-color: rgba(243, 156, 18, 0.2);
+  color: var(--profile-warning);
+}
+
+.transaction-status.failed {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: var(--profile-danger);
+}
+
+.view-all-btn {
+  display: block;
+  margin: 15px auto 0;
+  padding: 8px 20px;
+  background-color: transparent;
+  color: var(--profile-primary);
+  border: 1px solid var(--profile-primary);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background-color: var(--profile-primary);
+  color: white;
+}
+
+/* Bets Section Styles */
+.bets-filter {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: var(--profile-card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-group label {
+  color: var(--profile-text-secondary);
+  font-size: 0.9rem;
+}
+
+.filter-group select {
+  background-color: var(--profile-bg);
+  border: 1px solid var(--profile-border);
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: var(--profile-text-primary);
+  font-size: 0.9rem;
+}
+
+.bets-list,
+.transactions-list {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.bets-table,
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bets-table th,
+.transactions-table th {
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid var(--profile-border);
+  color: var(--profile-text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bets-table td,
+.transactions-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--profile-border);
+  color: var(--profile-text-primary);
+}
+
+.bets-table tr:last-child td,
+.transactions-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bets-table tbody tr:hover,
+.transactions-table tbody tr:hover {
+  background-color: var(--profile-bg);
+}
+
+.event-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.event-name {
+  font-weight: 500;
+  color: var(--profile-text-primary);
+}
+
+.event-category {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+}
+
+.amount-cell {
+  font-weight: 600;
+}
+
+.amount-cell.deposit {
+  color: var(--profile-success);
+}
+
+.amount-cell.withdrawal {
+  color: var(--profile-danger);
+}
+
+/* Transactions Section Styles */
+.wallet-summary {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.wallet-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wallet-balance h3 {
+  color: var(--profile-text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.wallet-balance .balance-amount {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--profile-text-primary);
+  margin-bottom: 20px;
+}
+
+.wallet-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.deposit-btn,
+.withdraw-btn {
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.deposit-btn {
+  background-color: var(--profile-success);
+  color: white;
+}
+
+.withdraw-btn {
+  background-color: var(--profile-danger);
+  color: white;
+}
+
+.deposit-btn:hover,
+.withdraw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-filter {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: var(--profile-card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Settings Section Styles */
+.settings-card {
+  background-color: var(--profile-card-bg);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.settings-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--profile-text-primary);
+  font-size: 1.4rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--profile-border);
+}
+
+.settings-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.settings-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-form .form-group.toggle {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--profile-border);
+}
+
+.settings-form .form-group.toggle:last-child {
+  border-bottom: none;
+}
+
+.toggle-label {
+  flex: 1;
+}
+
+.toggle-label label {
+  display: block;
+  font-weight: 500;
+  color: var(--profile-text-primary);
+  margin-bottom: 5px;
+}
+
+.toggle-description {
+  font-size: 0.85rem;
+  color: var(--profile-text-secondary);
+  margin: 0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--profile-border);
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.toggle-switch label::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + label {
+  background-color: var(--profile-primary);
+}
+
+.toggle-switch input:checked + label::before {
+  transform: translateX(26px);
+}
+
+.settings-form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--profile-text-primary);
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"],
+.settings-form input[type="password"],
+.settings-form select {
+  padding: 10px 15px;
+  border: 1px solid var(--profile-border);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--profile-bg);
+  color: var(--profile-text-primary);
+}
+
+.settings-form input:focus,
+.settings-form select:focus {
+  border-color: var(--profile-primary);
+  outline: none;
+}
+
+.save-btn {
+  padding: 10px 20px;
+  background-color: var(--profile-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: var(--profile-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .profile-sidebar {
+    width: 240px;
+  }
+
+  .profile-content {
+    margin-left: 240px;
+  }
+
+  :root {
+    --profile-sidebar-width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile-container {
+    flex-direction: column;
+  }
+
+  .profile-sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--profile-border);
+  }
+
+  .profile-user-info {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px 15px;
+    border-bottom: none;
+    margin-bottom: 15px;
+    gap: 20px;
+  }
+
+  .profile-avatar,
+  .profile-avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0;
+  }
+
+  .profile-user-info-text {
+    flex: 1;
+  }
+
+  .profile-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 20px;
+    gap: 10px;
+  }
+
+  .profile-nav-item {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 10px;
+  }
+
+  .profile-nav-item .nav-icon {
+    margin-right: 8px;
+  }
+
+  .profile-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .stats-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .detail-label,
+  .detail-value {
+    font-size: 0.9rem;
+  }
+
+  .wallet-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .deposit-btn,
+  .withdraw-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-user-info {
+    flex-direction: column;
+  }
+
+  .profile-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .profile-nav-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+  
+  .profile-section h1,
+  .bets-section h1,
+  .transactions-section h1,
+  .settings-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-activity-section h2,
+  .profile-details-section h2,
+  .settings-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .wallet-balance .balance-amount {
+    font-size: 1.8rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .bets-filter,
+  .transactions-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
+
+  .settings-form .form-row {
+    grid-template-columns: 1fr;
+  }
+} 

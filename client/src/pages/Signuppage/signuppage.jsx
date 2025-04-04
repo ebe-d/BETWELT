@@ -1,16 +1,40 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './signuppage.css';
 import AuthComponent from "../../components/Auth/Auth";
 import Squares from '@/components/squaregrid/squaregrid';
-import GradientText from '@/components/Gradienttext/gradienttext';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
 
-function SignInPage() {
-    let isSignUp=true
+function SignUpPage() {
+  const navigate = useNavigate();
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+
+  // Watch for theme changes
+  useEffect(() => {
+    const handleThemeChange = (event) => {
+      if (event.detail) {
+        setTheme(event.detail.theme);
+      } else {
+        setTheme(localStorage.getItem('theme') || 'dark');
+      }
+    };
+
+    window.addEventListener('themeChanged', handleThemeChange);
+    return () => {
+      window.removeEventListener('themeChanged', handleThemeChange);
+    };
+  }, []);
+
+  const goToSignIn = () => {
+    navigate('/SignIn');
+  };
+
   return (
     <>
       <div
-        className="signin-container"
+        className="signup-container"
         style={{
-          backgroundColor: '#0D0D0D',
+          backgroundColor: theme === 'dark' ? 'var(--background-primary)' : 'var(--background-primary)',
           width: '100vw',
           height: '100vh',
           position: 'relative',
@@ -20,13 +44,20 @@ function SignInPage() {
           justifyContent: 'center',
         }}
       >
+        {/* Add ThemeToggle here */}
+        <ThemeToggle />
+      
         {/* Square Grids in the background */}
         <Squares
           speed={0.5}
-          squareSize={40}
+          squareSize={50}
           direction="diagonal"
-          borderColor="#1A1A1A"
-          hoverFillColor="#00FFFF"
+          borderColor={theme === 'dark' ? "#1A1A1A" : "#e0e0e0"}
+          hoverFillColor={theme === 'dark' ? 
+            "rgba(153, 116, 191, 0.4)" : 
+            "rgba(99, 99, 174, 0.3)"
+          }
+          className={`signup-grid ${theme}`}
         />
 
         <div
@@ -41,15 +72,12 @@ function SignInPage() {
             width: '100%',
           }}
         >
-          {/* predixor Title */}
-          <GradientText
-            colors={["#00f0ff", "#40ffaa", "#4079ff", "#ff40ff"]} // Neon/Futuristic vibe
-            animationSpeed={6}
-            showBorder={false}
-            className="predixor-title"
-          >
-            Predixor
-          </GradientText>
+          {/* Updated Logo */}
+          <div className="predixor-logo">
+            <h1 className="logo-text" style={{ color: theme === 'dark' ? 'var(--text-primary)' : 'var(--text-primary)' }}>
+              Predi<span className="logo-accent">xor</span>
+            </h1>
+          </div>
 
           {/* Auth Component */}
           <div
@@ -60,14 +88,31 @@ function SignInPage() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              border: 'none', // No border
+              backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+              border: 'none',
               padding: '20px',
               borderRadius: '12px',
-              backdropFilter: 'blur(5px)', // Optional: adds a nice glass effect
+              backdropFilter: 'blur(5px)',
             }}
           >
-            <AuthComponent isSignUp={isSignUp} />
+            <AuthComponent isSignUp={true} />
+            
+            {/* Navigate to Sign In Link */}
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <p style={{ 
+                color: theme === 'dark' ? 'var(--text-secondary)' : 'var(--text-secondary)',
+                marginBottom: '10px',
+                fontSize: '14px'
+              }}>
+                Already have an account?
+              </p>
+              <button
+                onClick={goToSignIn}
+                className="auth-link-button"
+              >
+                Sign in instead
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -75,4 +120,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

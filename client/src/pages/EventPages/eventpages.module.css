@@ -1,0 +1,794 @@
+/* Events Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.eventsContainer {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--background-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-primary);
+  transition: background-color 0.5s ease;
+  padding-top: 150px;
+  overflow-x: hidden;
+  
+}
+
+.eventsContent {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  z-index: 2;
+}
+
+.pageHeader {
+  margin-bottom: 40px;
+}
+
+.pageTitle {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradientShift 5s ease infinite;
+}
+
+.pageDescription {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* Featured Events Banner */
+.featuredBanner {
+  margin-bottom: 50px;
+  position: relative;
+  height: 360px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.carouselSlide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.carouselSlide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carouselOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+  z-index: 2;
+}
+
+.featuredLabel {
+  display: inline-block;
+  background: var(--accent-primary);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.featuredTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.featuredInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.carouselNav {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.navButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.navButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.featuredCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #7474bf, #348AC7);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(116, 116, 191, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.featuredCta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #348AC7, #8744CE);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.featuredCta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(116, 116, 191, 0.6);
+}
+
+.featuredCta:hover::before {
+  opacity: 1;
+}
+
+.featuredCta svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.featuredCta:hover svg {
+  transform: translateX(4px);
+}
+
+/* Event Filters */
+.filterSection {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 8px;
+  border-radius: var(--btn-radius);
+  background: var(--background-secondary);
+  padding: 4px;
+}
+
+.filterTab {
+  padding: 8px 16px;
+  border-radius: var(--btn-radius);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+}
+
+.filterTab.active {
+  background: var(--accent-gradient);
+  color: white;
+}
+
+.filterDropdowns {
+  display: flex;
+  gap: 16px;
+}
+
+.filterDropdown {
+  position: relative;
+}
+
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--btn-radius);
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdownButton:hover {
+  border-color: var(--accent-primary);
+}
+
+.dropdownButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 8px;
+  background: var(--background-secondary);
+  border-radius: var(--btn-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 16px var(--shadow-color);
+  z-index: 10;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.filterDropdown:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.dropdownItem:hover {
+  background: rgba(116, 116, 191, 0.1);
+}
+
+/* Events Grid */
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.eventCard {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px var(--shadow-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  opacity: 0;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.statusLive {
+  background: var(--status-live);
+  color: white;
+}
+
+.statusUpcoming {
+  background: var(--status-upcoming);
+  color: white;
+}
+
+.statusCompleted {
+  background: var(--status-completed);
+  color: white;
+}
+
+.eventImage {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.eventInfo {
+  padding: 20px;
+}
+
+.eventCategory {
+  font-size: 14px;
+  color: var(--accent-primary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.eventTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.teamMatch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.teamLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--background-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.teamName {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.versus {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.eventMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.metaItem svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-primary);
+}
+
+.oddsSection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.oddsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 31%;
+}
+
+.oddsItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.oddsItem.selected {
+  background: rgba(116, 116, 191, 0.1);
+  border: 1px solid var(--accent-primary);
+}
+
+.oddsLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.oddsValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+}
+
+.actionButton {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.betButton {
+  background: linear-gradient(135deg, #7474bf, #348AC7);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(116, 116, 191, 0.3);
+  transform: translateY(0);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.betButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #348AC7, #8744CE);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.betButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 20px -5px rgba(116, 116, 191, 0.5);
+}
+
+.betButton:hover::before {
+  opacity: 1;
+}
+
+.betButton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px -3px rgba(116, 116, 191, 0.4);
+}
+
+.betButton svg {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.betButton:hover svg {
+  transform: rotate(90deg);
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+  box-shadow: 0 8px 15px -5px rgba(116, 116, 191, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -5px rgba(116, 116, 191, 0.4);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.secondaryButton:hover {
+  border-color: var(--accent-primary);
+  background: rgba(116, 116, 191, 0.08);
+  transform: translateY(-2px);
+}
+
+.loadMoreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 16px 24px;
+  width: 100%;
+  border-radius: var(--card-radius);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.loadMoreButton:hover {
+  background: rgba(116, 116, 191, 0.1);
+}
+
+.loadMoreButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .eventsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .featuredBanner {
+    height: 300px;
+  }
+  
+  .featuredTitle {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .eventsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+  
+  .filterSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filterDropdowns {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .featuredBanner {
+    height: 280px;
+  }
+  
+  .carouselOverlay {
+    padding: 20px;
+  }
+  
+  .featuredTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featuredBanner {
+    height: 240px;
+  }
+  
+  .pageTitle {
+    font-size: 36px;
+  }
+  
+  .featuredTitle {
+    font-size: 22px;
+  }
+  
+  .featuredInfo {
+    gap: 8px;
+  }
+  
+  .infoItem {
+    font-size: 13px;
+  }
+  
+  .carouselNav {
+    right: 20px;
+  }
+  
+  .navButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.eventCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px var(--shadow-color);
+  background: var(--card-bg-hover);
+}
+
+/* Animation activation control */
+.eventsContainer:not(.animationsActive) .pageHeader,
+.eventsContainer:not(.animationsActive) .featuredBanner,
+.eventsContainer:not(.animationsActive) .filterSection,
+.eventsContainer:not(.animationsActive) .eventsGrid,
+.eventsContainer:not(.animationsActive) .eventCard,
+.eventsContainer:not(.animationsActive) .loadMoreButton {
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  animation: none !important;
+}
+
+/* Direct animation styles for active state */
+.animationsActive .pageHeader {
+  animation: fadeInUp 0.8s ease-out both !important;
+}
+
+.animationsActive .featuredBanner {
+  animation: fadeInUp 0.8s ease-out 0.2s both !important;
+}
+
+.animationsActive .filterSection {
+  animation: fadeInUp 0.8s ease-out 0.3s both !important;
+}
+
+.animationsActive .eventsGrid {
+  animation: fadeInUp 0.8s ease-out 0.4s both !important;
+}
+
+.animationsActive .eventCard {
+  animation: fadeInUp 0.8s ease-out both !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.animationsActive .eventCard:nth-child(1) { animation-delay: 0.5s !important; }
+.animationsActive .eventCard:nth-child(2) { animation-delay: 0.6s !important; }
+.animationsActive .eventCard:nth-child(3) { animation-delay: 0.7s !important; }
+.animationsActive .eventCard:nth-child(4) { animation-delay: 0.8s !important; }
+.animationsActive .eventCard:nth-child(5) { animation-delay: 0.9s !important; }
+.animationsActive .eventCard:nth-child(6) { animation-delay: 1.0s !important; }
+.animationsActive .eventCard:nth-child(7) { animation-delay: 1.1s !important; }
+.animationsActive .eventCard:nth-child(8) { animation-delay: 1.2s !important; }
+
+.animationsActive .loadMoreButton {
+  animation: fadeInUp 0.8s ease-out 1.3s both !important;
+} 

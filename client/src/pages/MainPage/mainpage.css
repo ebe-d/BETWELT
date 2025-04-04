@@ -1,16 +1,41 @@
+:root {
+  /* Theme colors - dark mode default */
+  --background-primary: #0d0d0d;
+  --background-secondary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --accent-primary: #7474bf;
+  --accent-secondary: #9974bf;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --gradient-start: rgba(116, 116, 191, 0.1);
+  --gradient-end: rgba(153, 116, 191, 0.1);
+}
+
+/* Light mode theme */
+:root[data-theme="light"] {
+  --background-primary: #f9f9f9;
+  --background-secondary: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --accent-primary: #6363ae;
+  --accent-secondary: #7474bf;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --gradient-start: rgba(99, 99, 174, 0.1);
+  --gradient-end: rgba(116, 116, 191, 0.1);
+}
+
 .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 150px;
+    font-size: 158px;
     font-weight: bold;
     color: #FF0050; 
     text-transform: uppercase;
     letter-spacing: 1px;
     white-space: nowrap;
-  overflow: visible;
-  text-overflow: ellipsis;
-  letter-spacing: 1px;
-  line-height: 1.2;
-
+    overflow: visible;
+    text-overflow: ellipsis;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .logo2 {
@@ -21,11 +46,10 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     white-space: nowrap;
-  overflow: visible;
-  text-overflow: ellipsis;
-  letter-spacing: 1px;
-  line-height: 1.2;
-
+    overflow: visible;
+    text-overflow: ellipsis;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .slogan {
@@ -47,22 +71,22 @@
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
-                0 2px 4px rgba(0, 0, 0, 0.06); /* Soft elevated effect */
+                0 2px 4px rgba(0, 0, 0, 0.06);
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .dynamic-box:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
-                0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+                0 3px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .LogoWhole:hover{
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
-    0 3px 6px rgba(0, 0, 0, 0.1); /* More depth on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    0 3px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
-/* 🔹 Center Everything */
+
 .main-container {
     display: flex;
     justify-content: center;
@@ -77,7 +101,6 @@
     align-items: center;
 }
 
-/* 🔹 Logo Styling */
 .logo-container {
     display: flex;
     justify-content: center;
@@ -89,7 +112,6 @@
     font-weight: bold;
 }
 
-/* 🔹 Slogan */
 .slogan-container {
     margin-bottom: 40px;
     font-size: 30px;
@@ -100,14 +122,12 @@
     align-items: center;
 }
 
-/* 🔹 Static "Your" Text */
 .static-text {
     font-size: 30px;
     font-weight: bold;
     color: red;
 }
 
-/* 🔄 Rotating Words */
 .rotating-text {
     font-size: 30px;
     font-weight: bold;
@@ -116,7 +136,6 @@
     min-height: 40px;
 }
 
-/* 🔹 Buttons */
 .dynamic-box {
     width: 300px;
     height: 200px;
@@ -143,38 +162,132 @@
     cursor: pointer;
     opacity: 1;
     transition: transform 0.5s ease;
-  }
+}
   
-  .predixor-title:hover {
+.predixor-title:hover {
     transform: scale(1.1);
     animation: fadeGlow 0.5s forwards;
-  }
+}
   
-  @keyframes fadeGlow {
+@keyframes fadeGlow {
     0% {
       opacity: 0.7;
-      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+      text-shadow: 0 0 5px rgba(153, 116, 191, 0.5);
     }
     50% {
       opacity: 0.9;
-      text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+      text-shadow: 0 0 15px rgba(153, 116, 191, 0.8);
     }
     100% {
       opacity: 1;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+      text-shadow: 0 0 20px rgba(153, 116, 191, 1);
     }
-  }
+}
   
-  /* Reset default margin/padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
   
-  html, body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-  }
+}
+  
+/* Main Page Logo - matches homepage style */
+.predixor-logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.predixor-logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-text {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 100px; /* Increased by 5px from 95px */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    position: relative;
+    transition: color 0.3s ease;
+    margin: 0;
+}
+
+.logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.predixor-logo:hover .logo-text::after {
+    width: 100%;
+}
+
+.logo-accent {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+/* Authentication Buttons */
+.auth-button {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.signup-button {
+    color: white;
+    border: none;
+}
+
+.signin-button {
+    background: transparent;
+    border: 2px solid var(--border-color);
+}
+
+.signin-button:hover {
+    border-color: var(--accent-primary);
+    background: rgba(153, 116, 191, 0.05);
+}
+
+.main-grid {
+  transition: all 0.5s ease-in-out;
+}
+
+.main-grid.dark {
+  opacity: 0.9;
+}
+
+.main-grid.light {
+  opacity: 0.95;
+}
   

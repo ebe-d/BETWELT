@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './squaregrid.css';
 
 const Squares = ({
@@ -15,6 +15,37 @@ const Squares = ({
   const numSquaresY = useRef();
   const gridOffset = useRef({ x: 0, y: 0 });
   const hoveredSquare = useRef(null);
+  
+  // Add transition state for colors
+  const [currentBorderColor, setCurrentBorderColor] = useState(borderColor);
+  const [currentHoverFillColor, setCurrentHoverFillColor] = useState(hoverFillColor);
+
+  // Update colors with transition effect when props change
+  useEffect(() => {
+    // When theme changes, update colors immediately
+    setCurrentBorderColor(borderColor);
+    setCurrentHoverFillColor(hoverFillColor);
+    
+    // No need for intervals which can cause performance issues
+    // const borderColorTransition = setInterval(() => {
+    //   if (currentBorderColor !== borderColor) {
+    //     // Gradually transition border color
+    //     setCurrentBorderColor(borderColor);
+    //   }
+    // }, 50);
+    
+    // const hoverColorTransition = setInterval(() => {
+    //   if (currentHoverFillColor !== hoverFillColor) {
+    //     // Gradually transition hover fill color
+    //     setCurrentHoverFillColor(hoverFillColor);
+    //   }
+    // }, 50);
+    
+    // return () => {
+    //   clearInterval(borderColorTransition);
+    //   clearInterval(hoverColorTransition);
+    // };
+  }, [borderColor, hoverFillColor]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,11 +77,11 @@ const Squares = ({
             Math.floor((x - startX) / squareSize) === hoveredSquare.current.x &&
             Math.floor((y - startY) / squareSize) === hoveredSquare.current.y
           ) {
-            ctx.fillStyle = hoverFillColor;
+            ctx.fillStyle = currentHoverFillColor; // Use the transitioning color
             ctx.fillRect(squareX, squareY, squareSize, squareSize);
           }
 
-          ctx.strokeStyle = borderColor;
+          ctx.strokeStyle = currentBorderColor; // Use the transitioning color
           ctx.strokeRect(squareX, squareY, squareSize, squareSize);
         }
       }
@@ -132,7 +163,7 @@ const Squares = ({
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, squareSize]);
+  }, [direction, speed, squareSize, currentBorderColor, currentHoverFillColor]);
 
   return <canvas ref={canvasRef} className={`squares-canvas ${className}`}></canvas>;
 };
