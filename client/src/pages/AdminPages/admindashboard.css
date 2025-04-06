@@ -1,9 +1,9 @@
 :root {
   /* Theme colors - dark mode default, using values from user-facing components */
-  --primary-color: #7474bf;
-  --primary-light: #9974bf;
-  --primary-dark: #6363ae;
-  --secondary-color: #9974bf;
+  --primary-color: #835deb;
+  --primary-light: #b85cca;
+  --primary-dark: #7048c6;
+  --secondary-color: #b85cca;
   --background-primary: #0d0d0d;
   --background-secondary: #1a1a1a;
   --background-tertiary: #222222;
@@ -20,15 +20,15 @@
   --positive-color: #4caf50;
   --negative-color: #f44336;
   --transition: all 0.3s ease;
-  --primary-color-rgb: 116, 116, 191;
+  --primary-color-rgb: 131, 93, 235;
 }
 
 /* Light mode theme */
 [data-theme="light"] {
-  --primary-color: #6363ae;
-  --primary-light: #7474bf;
-  --primary-dark: #5252a0;
-  --secondary-color: #7474bf;
+  --primary-color: #835deb;
+  --primary-light: #b85cca;
+  --primary-dark: #7048c6;
+  --secondary-color: #b85cca;
   --background-primary: #f5f7fa;
   --background-secondary: #ffffff;
   --background-tertiary: #f0f2f5;

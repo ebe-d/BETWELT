@@ -61,11 +61,9 @@ const AdminEvents = () => {
     }
   });
 
-  // Mock categories for dropdown
-  const categories = [
-    'General', 'Sports', 'Politics', 'Entertainment', 'Finance', 
-    'Technology', 'Weather', 'Social', 'Pop Culture', 'Other'
-  ];
+  // State for categories from the database
+  const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
 
   const [filterText, setFilterText] = useState('');
   const navigate = useNavigate();
@@ -77,6 +75,26 @@ const AdminEvents = () => {
     };
     
     initializeAuth();
+  }, []);
+
+  // Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setLoadingCategories(true);
+      try {
+        const response = await axios.get('http://localhost:5000/api/categories');
+        // Extract category names from the response
+        const categoryNames = response.data.map(category => category.name);
+        setCategories(categoryNames);
+        setLoadingCategories(false);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        toast.error('Failed to load categories');
+        setLoadingCategories(false);
+      }
+    };
+    
+    fetchCategories();
   }, []);
 
   // Load events from API

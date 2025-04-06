@@ -198,64 +198,75 @@
 }
 
 .actionButton {
-  flex: 1;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 20px;
-  background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  padding: 12px 20px;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 600;
-  color: var(--text-primary);
-  cursor: pointer;
+  border-radius: 10px;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  cursor: pointer;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  text-decoration: none;
 }
 
 .actionButton:hover {
-  background: var(--background-tertiary);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
   color: white;
-  border: none;
   position: relative;
   overflow: hidden;
-  z-index: 1;
-  box-shadow: 0 6px 12px rgba(116, 116, 191, 0.2);
+  border: none;
 }
 
-.primaryButton::before {
+.rewardsButton {
+  background: linear-gradient(90deg, #835deb, #b85cca);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.primaryButton::before, .rewardsButton::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.5s ease;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  transition: all 0.5s ease;
 }
 
 .primaryButton:hover {
   box-shadow: 0 8px 16px rgba(116, 116, 191, 0.3);
 }
 
-.primaryButton:hover::before {
-  opacity: 1;
+.rewardsButton:hover {
+  box-shadow: 0 8px 16px rgba(131, 93, 235, 0.3);
+}
+
+.primaryButton:hover::before, .rewardsButton:hover::before {
+  left: 100%;
 }
 
 .actionButton svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   transition: transform 0.3s ease;
 }
 

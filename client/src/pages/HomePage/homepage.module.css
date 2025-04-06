@@ -9,21 +9,27 @@
   --card-bg: rgba(37, 37, 37, 0.85);
   --card-bg-hover: rgba(45, 45, 45, 0.95);
   --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --text-tertiary: #777777;
-  --accent-primary: #7474bf;
-  --accent-secondary: #9974bf;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #999999;
+  --accent-primary: #835deb;
+  --accent-primary-rgb: 131, 93, 235;
+  --accent-secondary: #b85cca;
+  --accent-secondary-rgb: 184, 92, 202;
   --accent-tertiary: #bf7474;
+  --accent-tertiary-rgb: 191, 116, 116;
   --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  --border-color: rgba(255, 255, 255, 0.08);
-  --shadow-color: rgba(0, 0, 0, 0.25);
-  --gradient-start: rgba(116, 116, 191, 0.08);
-  --gradient-end: rgba(153, 116, 191, 0.08);
+  --border-color: rgba(131, 93, 235, 0.1);
+  --border-color-rgb: 131, 93, 235;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --gradient-start: rgba(131, 93, 235, 0.1);
+  --gradient-end: rgba(184, 92, 202, 0.1);
   --status-live: #4caf50;
   --status-upcoming: #2196f3;
   --status-completed: #ff9800;
   --positive-color: #4caf50;
   --negative-color: #f44336;
+  --pending-color: #2196f3;
+  --card-bg-rgb: 37, 37, 37;
   --chart-bg: rgba(255, 255, 255, 0.03);
   --glass-effect: backdrop-filter: blur(10px);
   --card-radius: 16px;
@@ -41,13 +47,13 @@
   --text-primary: #333333;
   --text-secondary: #666666;
   --text-tertiary: #999999;
-  --accent-primary: #6363ae;
-  --accent-secondary: #7474bf;
+  --accent-primary: #835deb;
+  --accent-secondary: #b85cca;
   --accent-tertiary: #ae6363;
   --border-color: rgba(0, 0, 0, 0.06);
   --shadow-color: rgba(0, 0, 0, 0.08);
-  --gradient-start: rgba(99, 99, 174, 0.05);
-  --gradient-end: rgba(116, 116, 191, 0.05);
+  --gradient-start: rgba(131, 93, 235, 0.05);
+  --gradient-end: rgba(184, 92, 202, 0.05);
   --chart-bg: rgba(0, 0, 0, 0.02);
 }
 
@@ -160,15 +166,16 @@
   margin-top: 50px;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
-  background: var(--card-bg);
+  background: linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.15), rgba(var(--accent-secondary-rgb), 0.15));
   padding: 30px 40px;
   border-radius: 24px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px var(--shadow-color);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .welcomeSection::before {
@@ -178,7 +185,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(116, 116, 191, 0.03), rgba(153, 116, 191, 0.03));
+  background: linear-gradient(135deg, rgba(var(--accent-primary-rgb), 0.03), rgba(var(--accent-secondary-rgb), 0.03));
   opacity: 0.8;
   z-index: -1;
 }
@@ -1024,6 +1031,74 @@
   gap: 16px;
 }
 
+/* View All Button */
+.viewAllButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.viewAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  opacity: 0.9;
+}
+
+.viewAllButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Badge Styles */
+.resultBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Stat Styles */
+.profitStat .historyStatValue {
+  color: var(--positive-color);
+}
+
+.lossStat .historyStatValue {
+  color: var(--negative-color);
+}
+
+.pendingStat .historyStatValue {
+  color: var(--pending-color);
+}
+
+.winBadge {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: var(--positive-color);
+}
+
+.lossBadge {
+  background-color: rgba(244, 67, 54, 0.15);
+  color: var(--negative-color);
+}
+
+.pendingBadge {
+  background-color: rgba(33, 150, 243, 0.15);
+  color: var(--pending-color);
+}
+
 .historyItem {
   background: rgba(34, 34, 34, 0.5);
   border-radius: 12px;
@@ -1066,6 +1141,10 @@
 
 .historyStatus[data-status="lost"] {
   background: var(--negative-color);
+}
+
+.historyStatus[data-status="pending"] {
+  background: var(--pending-color);
 }
 
 .historyInfo {
@@ -1938,19 +2017,22 @@
 }
 
 .bettingHistorySection.welcomeSection {
-  background: var(--card-bg);
+  background: linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.1), rgba(var(--accent-secondary-rgb), 0.1));
   border-radius: 24px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px var(--shadow-color);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 30px;
+  transition: all 0.3s ease;
 }
 
 .bettingHistorySection .sectionHeader {
   margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(var(--accent-primary-rgb), 0.1);
 }
 
 /* Performance Summary */
@@ -1960,6 +2042,11 @@
   align-items: center;
   margin-bottom: 40px;
   gap: 20px;
+  padding: 15px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.1), rgba(var(--accent-secondary-rgb), 0.1));
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .performanceMetrics {
@@ -1970,7 +2057,7 @@
 }
 
 .metricCard {
-  background: rgba(var(--card-bg-rgb), 0.4);
+  background: rgba(var(--accent-primary-rgb), 0.08);
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -1978,17 +2065,18 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid rgba(var(--border-color-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
   transition: all 0.3s ease;
   animation: fadeInUp 0.5s ease-out forwards;
   animation-delay: var(--delay, 0s);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .metricCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent-primary);
-  background: rgba(var(--card-bg-rgb), 0.7);
+  box-shadow: 0 10px 25px rgba(var(--accent-primary-rgb), 0.15);
+  border-color: rgba(var(--accent-primary-rgb), 0.3);
+  background: linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.08), rgba(var(--accent-secondary-rgb), 0.08));
 }
 
 .metricValue {
@@ -2230,6 +2318,73 @@
   margin-bottom: 40px;
 }
 
+.noCategoryData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  background: rgba(var(--card-bg-rgb), 0.3);
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(var(--border-color-rgb), 0.1);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.noCategoryData svg {
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.noCategoryData h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.noCategoryData p {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  max-width: 300px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Show More Button */
+.showMoreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  color: var(--accent-primary);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 16px auto 0;
+  width: fit-content;
+}
+
+.showMoreButton:hover {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  transform: translateY(-2px);
+}
+
+.showMoreButton svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.rotateIcon {
+  transform: rotate(180deg);
+}
+
 .categoryList {
   display: flex;
   flex-direction: column;
@@ -2319,6 +2474,30 @@
   gap: 16px;
 }
 
+.noBettingHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border-color);
+}
+
+.placeBetButton {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
 .historyRow {
   display: flex;
   border-radius: 16px;
@@ -2333,7 +2512,9 @@
 
 .historyRow:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px var(--shadow-color);
+  border-color: rgba(var(--accent-primary-rgb), 0.2);
+  background: linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.05), rgba(var(--accent-secondary-rgb), 0.05));
 }
 
 .winRow .historyIndicator {
@@ -2342,6 +2523,10 @@
 
 .lossRow .historyIndicator {
   background-color: var(--negative-color);
+}
+
+.pendingRow .historyIndicator {
+  background-color: var(--pending-color);
 }
 
 .historyIndicator {
@@ -2355,8 +2540,7 @@
   align-items: center;
   flex: 1;
   padding: 20px;
-  background: rgba(var(--card-bg-rgb), 0.3);
-  border: 1px solid rgba(var(--border-color-rgb), 0.1);
+  background: transparent;
   border-left: none;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -2387,6 +2571,25 @@
   gap: 12px;
   font-size: 13px;
   color: var(--text-secondary);
+}
+
+.historyStatus {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusFinished {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: var(--status-live);
+}
+
+.statusOngoing {
+  background-color: rgba(33, 150, 243, 0.15);
+  color: var(--status-upcoming);
 }
 
 .historyEvent {

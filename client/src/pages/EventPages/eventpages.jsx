@@ -5,8 +5,10 @@ import styles from './eventpages.module.css';
 import Footer from '@/components/Footer/footer';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import DirectPredictionModal from '@/components/DirectPredictionModal/DirectPredictionModal';
 
 const API_URL = 'http://localhost:5000/api/events';
+const CATEGORIES_API_URL = 'http://localhost:5000/api/categories';
 
 function EventPage() {
     const navigate = useNavigate();
@@ -31,6 +33,35 @@ function EventPage() {
     
     // State for filtered events
     const [filteredEvents, setFilteredEvents] = useState([]);
+    
+    // State for categories from the database
+    const [categories, setCategories] = useState([]);
+    const [loadingCategories, setLoadingCategories] = useState(true);
+
+    // Add state for prediction modal
+    const [isPredictionModalOpen, setPredictionModalOpen] = useState(false);
+    const [selectedEventForPrediction, setSelectedEventForPrediction] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    // Fetch categories from backend
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setLoadingCategories(true);
+            try {
+                const response = await axios.get(CATEGORIES_API_URL);
+                // Extract category data from the response
+                const categoryData = response.data.map(category => category.name);
+                setCategories(categoryData);
+                setLoadingCategories(false);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+                toast.error('Failed to load categories');
+                setLoadingCategories(false);
+            }
+        };
+        
+        fetchCategories();
+    }, []);
 
     // Fetch events from backend
     useEffect(() => {
@@ -87,10 +118,16 @@ function EventPage() {
             const option1 = event.options?.option1 || event.teams?.home || {};
             const option2 = event.options?.option2 || event.teams?.away || {};
             
-            return {
+            // Ensure ID is a string and available
+            const eventId = event.id ? String(event.id) : String(event._id || Math.random().toString(36).substring(2, 15));
+            
+            // Create a standardized event object that works with both admin and user side
+            const formattedEvent = {
                 ...event,
+                id: eventId, // Ensure ID is consistently available and a string
                 formattedDate: formatDate(event.date),
                 countdown: getCountdown(event.date, event.time),
+                // Ensure options structure is consistent
                 options: {
                     option1: {
                         name: option1.name || '',
@@ -101,12 +138,26 @@ function EventPage() {
                         logo: option2.logo || ''
                     }
                 },
+                // Ensure odds structure is consistent
                 odds: {
                     option1: event.odds?.option1 || event.odds?.home || 1.0,
                     draw: event.odds?.draw || 0,
                     option2: event.odds?.option2 || event.odds?.away || 1.0
+                },
+                // For backward compatibility
+                teams: {
+                    home: {
+                        name: option1.name || '',
+                        logo: option1.logo || ''
+                    },
+                    away: {
+                        name: option2.name || '',
+                        logo: option2.logo || ''
+                    }
                 }
             };
+            
+            return formattedEvent;
         });
     };
 
@@ -171,9 +222,20 @@ function EventPage() {
     };
 
     const handleViewEvent = (eventId) => {
-        // Navigate to event details page
-        console.log(`Navigating to event ${eventId}`);
-        navigate(`/home/events/${eventId}`);
+        if (!eventId) {
+            console.error("Cannot navigate to undefined event ID");
+            return;
+        }
+        
+        // Debug the event ID we're trying to navigate to
+        console.log("Navigation: Attempting to navigate to event with ID:", eventId);
+        
+        // Make sure we're using a string ID
+        const targetPath = `/home/events/${String(eventId)}`;
+        console.log("Navigation: Target path:", targetPath);
+        
+        // Navigate without replace
+        navigate(targetPath);
     };
 
     const formatDate = (date) => {
@@ -262,6 +324,15 @@ function EventPage() {
             .map(event => event.category)
     )];
 
+    // Add new function to handle direct prediction
+    const handleMakePrediction = (event, e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("Opening prediction modal for event:", event.id);
+        setSelectedEventForPrediction(event);
+        setPredictionModalOpen(true);
+    };
+
     return (
         <>
             <Navbar imglink={"https://raw.githubusercontent.com/eseku/betwelts/main/Public/images/logo.png"} />
@@ -313,8 +384,13 @@ function EventPage() {
                                                  event.status === 'live' ? 'LIVE NOW' : 'Completed'}
                                             </div>
                                         </div>
-                                        <button className={styles.featuredCta} onClick={() => handleViewEvent(event.id)}>
-                                            {event.status === 'completed' ? 'View Results' : 'Place Bet'}
+                                        <button className={styles.featuredCta} onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            console.log(`Navigating to event details for ${event.id}`);
+                                            handleViewEvent(event.id);
+                                        }}>
+                                            {event.status === 'completed' ? 'View Results' : 'View Details'}
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -369,12 +445,20 @@ function EventPage() {
                                     </svg>
                                 </button>
                                 <div className={styles.dropdownMenu}>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('all')}>All Sports</div>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('soccer')}>Soccer</div>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('basketball')}>Basketball</div>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('tennis')}>Tennis</div>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('motorsport')}>Motorsport</div>
-                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('mma')}>MMA</div>
+                                    <div className={styles.dropdownItem} onClick={() => toggleSportFilter('all')}>All Categories</div>
+                                    {loadingCategories ? (
+                                        <div className={styles.dropdownItem}>Loading categories...</div>
+                                    ) : (
+                                        categories.map((category) => (
+                                            <div 
+                                                key={category} 
+                                                className={styles.dropdownItem} 
+                                                onClick={() => toggleSportFilter(category)}
+                                            >
+                                                {category}
+                                            </div>
+                                        ))
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -405,9 +489,9 @@ function EventPage() {
                                     <div className={styles.teamMatch}>
                                         <div className={styles.team}>
                                             <div className={styles.teamLogo}>
-                                                {event.teams.home.logo}
+                                                {event.options?.option1?.logo || (event.teams?.home?.logo || '')}
                                             </div>
-                                            <div className={styles.teamName}>{event.teams.home.name}</div>
+                                            <div className={styles.teamName}>{event.options?.option1?.name || (event.teams?.home?.name || 'Option 1')}</div>
                                         </div>
                                         <div className={styles.versus}>
                                             {event.status === 'live' && event.score ? event.score : 
@@ -416,9 +500,9 @@ function EventPage() {
                                         </div>
                                         <div className={styles.team}>
                                             <div className={styles.teamLogo}>
-                                                {event.teams.away.logo}
+                                                {event.options?.option2?.logo || (event.teams?.away?.logo || '')}
                                             </div>
-                                            <div className={styles.teamName}>{event.teams.away.name}</div>
+                                            <div className={styles.teamName}>{event.options?.option2?.name || (event.teams?.away?.name || 'Option 2')}</div>
                                         </div>
                                     </div>
                                     
@@ -450,24 +534,28 @@ function EventPage() {
                                     
                                     {event.status !== 'completed' && (
                                         <div className={styles.oddsSection}>
-                                            {event.odds.home && (
+                                            {(event.odds?.option1 || event.odds?.home) && (
                                                 <div className={styles.oddsItem}>
-                                                    <div className={styles.oddsLabel}>{event.category === "Soccer" ? "Home" : event.teams.home.name}</div>
-                                                    <div className={styles.oddsValue}>{event.odds.home}</div>
+                                                    <div className={styles.oddsLabel}>
+                                                        {event.options?.option1?.name || (event.teams?.home?.name || 'Option 1')}
+                                                    </div>
+                                                    <div className={styles.oddsValue}>{event.odds?.option1 || event.odds?.home}</div>
                                                 </div>
                                             )}
                                             
-                                            {event.odds.draw && (
+                                            {(event.odds?.draw) && (
                                                 <div className={styles.oddsItem}>
                                                     <div className={styles.oddsLabel}>Draw</div>
                                                     <div className={styles.oddsValue}>{event.odds.draw}</div>
                                                 </div>
                                             )}
                                             
-                                            {event.odds.away && (
+                                            {(event.odds?.option2 || event.odds?.away) && (
                                                 <div className={styles.oddsItem}>
-                                                    <div className={styles.oddsLabel}>{event.category === "Soccer" ? "Away" : event.teams.away.name}</div>
-                                                    <div className={styles.oddsValue}>{event.odds.away}</div>
+                                                    <div className={styles.oddsLabel}>
+                                                        {event.options?.option2?.name || (event.teams?.away?.name || 'Option 2')}
+                                                    </div>
+                                                    <div className={styles.oddsValue}>{event.odds?.option2 || event.odds?.away}</div>
                                                 </div>
                                             )}
                                         </div>
@@ -477,18 +565,26 @@ function EventPage() {
                                         {event.status !== 'completed' ? (
                                             <button 
                                                 className={`${styles.actionButton} ${styles.betButton}`}
-                                                onClick={() => handleViewEvent(event.id)}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    handleViewEvent(event.id);
+                                                }}
                                             >
-                                                Place Bet
+                                                Make Prediction
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
                                                     <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    <polyline points="12 5 19 12 12 19"></polyline>
                                                 </svg>
                                             </button>
                                         ) : (
                                             <button 
                                                 className={`${styles.actionButton} ${styles.primaryButton}`}
-                                                onClick={() => handleViewEvent(event.id)}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    handleViewEvent(event.id);
+                                                }}
                                             >
                                                 View Results
                                             </button>
@@ -496,7 +592,11 @@ function EventPage() {
                                         
                                         <button 
                                             className={`${styles.actionButton} ${styles.secondaryButton}`}
-                                            onClick={() => handleViewEvent(event.id)}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleViewEvent(event.id);
+                                            }}
                                         >
                                             Details
                                         </button>
@@ -518,6 +618,26 @@ function EventPage() {
                     )}
                 </div>
             </div>
+
+            {/* Prediction Modal */}
+            {isPredictionModalOpen && selectedEventForPrediction && (
+                <DirectPredictionModal
+                    isOpen={isPredictionModalOpen}
+                    onClose={() => {
+                        setPredictionModalOpen(false);
+                        setSelectedEventForPrediction(null);
+                        setSelectedOption(null);
+                    }}
+                    event={selectedEventForPrediction}
+                    onConfirm={(data) => {
+                        console.log("Prediction confirmed:", data);
+                        // Handle prediction confirmation
+                        toast.success('Prediction placed successfully!');
+                        setPredictionModalOpen(false);
+                        setSelectedEventForPrediction(null);
+                    }}
+                />
+            )}
         </>
     );
 }

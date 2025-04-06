@@ -26,9 +26,10 @@
 
 .footerContainer {
   position: relative;
-  max-width: 1440px;
+  width: 100%;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
   z-index: 1;
 }
 
@@ -207,6 +208,10 @@
   
   .legalLinks {
     justify-content: center;
+  }
+  
+  .footerContainer {
+    padding: 0 20px;
   }
 }
 

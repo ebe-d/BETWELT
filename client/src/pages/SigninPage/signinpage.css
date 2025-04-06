@@ -4,11 +4,11 @@
   --background-secondary: #1a1a1a;
   --text-primary: #ffffff;
   --text-secondary: #aaaaaa;
-  --accent-primary: #7474bf;
-  --accent-secondary: #9974bf;
+  --accent-primary: #835deb;
+  --accent-secondary: #b85cca;
   --border-color: rgba(255, 255, 255, 0.1);
-  --gradient-start: rgba(116, 116, 191, 0.1);
-  --gradient-end: rgba(153, 116, 191, 0.1);
+  --gradient-start: rgba(131, 93, 235, 0.1);
+  --gradient-end: rgba(184, 92, 202, 0.1);
 }
 
 /* Light mode theme */
@@ -17,11 +17,11 @@
   --background-secondary: #ffffff;
   --text-primary: #111111;
   --text-secondary: #555555;
-  --accent-primary: #6363ae;
-  --accent-secondary: #7474bf;
+  --accent-primary: #835deb;
+  --accent-secondary: #b85cca;
   --border-color: rgba(0, 0, 0, 0.1);
-  --gradient-start: rgba(99, 99, 174, 0.1);
-  --gradient-end: rgba(116, 116, 191, 0.1);
+  --gradient-start: rgba(131, 93, 235, 0.1);
+  --gradient-end: rgba(184, 92, 202, 0.1);
 }
 
 .logo {
@@ -36,7 +36,7 @@
 
 .slogan {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: linear-gradient(90deg, #7474bf, #9974bf);
+  background: linear-gradient(90deg, #835deb, #b85cca);
   -webkit-background-clip: text;
   background-clip: text;
 }

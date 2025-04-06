@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaWallet, FaArrowUp, FaArrowDown, FaExchangeAlt, FaGift, FaTimes, 
   FaCreditCard, FaPaypal, FaBitcoin, FaEthereum, FaApple, FaGooglePay, FaUserFriends, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Navbar from "@/components/NavBar/navbar";
 import styles from './wallet.module.css';
 import { useUser } from '../../context/UserContext';
@@ -355,6 +356,10 @@ const WalletPage = () => {
                 <FaArrowUp />
                 Withdraw PDX
               </button>
+              <Link to="/home/rewards" className={`${styles.actionButton} ${styles.rewardsButton}`}>
+                <FaGift />
+                View Rewards
+              </Link>
             </div>
           </div>
           

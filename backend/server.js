@@ -6,6 +6,9 @@ const connectDB = require('./src/config/db');
 const userRouter=require('./src/routes/userRoutes');
 const chatRoutes=require('./src/routes/chatRoutes');
 const eventRoutes=require('./src/routes/eventRoutes');
+const betRoutes = require('./src/routes/betRoutes');
+const categoryRoutes = require('./src/routes/categoryRoutes');
+const predictionRoutes = require('./src/routes/predictionRoutes');
 
 const cookieParser = require("cookie-parser");
 const app=express();
@@ -30,6 +33,9 @@ app.get('/',(req,res)=>{
 app.use('/api/users',userRouter);
 app.use('/api',chatRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/bets', betRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/predictions', predictionRoutes);
 
 const PORT=process.env.PORT
 

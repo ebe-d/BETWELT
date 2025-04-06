@@ -75,7 +75,7 @@ function SignInPage() {
           {/* Updated Logo */}
           <div className="predixor-logo">
             <h1 className="logo-text" style={{ color: theme === 'dark' ? 'var(--text-primary)' : 'var(--text-primary)' }}>
-              Predi<span className="logo-accent">xor</span>
+              Pred<span className="logo-accent">ixor</span>
             </h1>
           </div>
 

@@ -124,3 +124,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Global container class to add breathing space */
+.site-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .site-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

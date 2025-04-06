@@ -17,6 +17,9 @@ import HelpPage from './pages/HelpPage/HelpPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
 import { UserProvider } from './context/UserContext';
+import { ModalProvider } from './context/ModalContext';
+import CommunityPage from './pages/CommunityPage/CommunityPage';
+import RewardsPage from './pages/RewardsPage/RewardsPage';
 
 // Layout component to conditionally render footer and chatbot
 const Layout = ({ children }) => {
@@ -26,8 +29,10 @@ const Layout = ({ children }) => {
   
   return (
     <>
-      {children}
-      {!isAdminRoute && !isAuthRoute && <Footer />}
+      <div className="site-container">
+        {children}
+        {!isAdminRoute && !isAuthRoute && <Footer />}
+      </div>
       {!isAdminRoute && !isAuthRoute && <ChatBotWidget />}
     </>
   );
@@ -36,26 +41,30 @@ const Layout = ({ children }) => {
 function App() {
   return (
     <UserProvider>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path='/' element={<Main/>}></Route>
-            <Route path='/SignUp' element={<SignUpPage/>}></Route>
-            <Route path='/SignIn' element={<SignInPage/>}></Route>
-            <Route path='/home' element={<PrivateRoute/>}>
-               <Route index element={<Homepage/>}/>
-               <Route path='events' element={<EventPage/>} />
-               <Route path='events/:id' element={<EventDetail/>} />
-               <Route path='wallet' element={<WalletPage/>} />
-               <Route path='help' element={<HelpPage/>} />
-               <Route path='profile' element={<ProfilePage/>} />
-               <Route path='settings' element={<SettingsPage/>} />
-            </Route>
-            <Route path='/admin/*' element={<AdminPage />}/>
-            <Route path='/demo' element={<Demo/>}/>
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path='/' element={<Main/>}></Route>
+              <Route path='/SignUp' element={<SignUpPage/>}></Route>
+              <Route path='/SignIn' element={<SignInPage/>}></Route>
+              <Route path='/home' element={<PrivateRoute/>}>
+                <Route index element={<Homepage/>}/>
+                <Route path='events' element={<EventPage/>} />
+                <Route path='events/:id' element={<EventDetail/>} />
+                <Route path='wallet' element={<WalletPage/>} />
+                <Route path='help' element={<HelpPage/>} />
+                <Route path='profile' element={<ProfilePage/>} />
+                <Route path='settings' element={<SettingsPage/>} />
+                <Route path='community' element={<CommunityPage />} />
+                <Route path='rewards' element={<RewardsPage />} />
+              </Route>
+              <Route path='/admin/*' element={<AdminPage />}/>
+              <Route path='/demo' element={<Demo/>}/>
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </ModalProvider>
     </UserProvider>
   )
 }
